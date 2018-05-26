@@ -22,5 +22,5 @@ Avec l'aide de Monsieur Gelas Jean-Patrick
 # 1. Choix techniques
 # 2. Evolutions possible
 # 3. Comment reproduire le projet
-## 1. Pré-requis
-## 2. Marche à suivre
+   ## 1. Pré-requis
+   ## 2. Marche à suivre
