@@ -23,15 +23,15 @@ Avec l'aide de Monsieur Gelas Jean-Patrick
 # Cryptobox
 ### Caractéristiques
 
--Système d'exploitation
-   -Alpine Linux 
--Serveur Web
-   -NGINX : permet de télécharger les fichiers sur la clé
-   -NodeJS : gère le chiffrement et le déchiffrement des fichiers et l'upload de fichier sur la clé
--Serveur DHCP et DNS :
-   -dnsmasq
--Chiffrement :
-   -LUKS
+*Système d'exploitation
+   *Alpine Linux 
+*Serveur Web
+   *NGINX : permet de télécharger les fichiers sur la clé
+   *NodeJS : gère le chiffrement et le déchiffrement des fichiers et l'upload de fichier sur la clé
+*Serveur DHCP et DNS :
+  *dnsmasq
+*Chiffrement :
+  *LUKS
 
 ### Fonctionnement
 
