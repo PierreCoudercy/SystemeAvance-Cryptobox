@@ -90,7 +90,9 @@ De plus ce système de chiffrement permet de déchiffrer facilement des données
 ### Marche à suivre
 
 1. Preparation de la cle
-   1. Telecharger l'image iso d'alpine linux au lien suivant (choisir la version : )
+   1. Telecharger l'image iso d'alpine linux au lien suivant (choisir la version : standard-x86_64)
+   
+   https://alpinelinux.org/downloads/
 
    2. Formater la cle a l'aide de la commande suivante :
 ```
