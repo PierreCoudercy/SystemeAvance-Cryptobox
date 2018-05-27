@@ -92,15 +92,15 @@ De plus ce système de chiffrement permet de déchiffrer facilement des données
 1. Preparation de la cle
    1. Telecharger l'image iso d'alpine linux au lien suivant (choisir la version : standard-x86_64)
    
-   https://alpinelinux.org/downloads/
+   	https://alpinelinux.org/downloads/
 
    2. Formater la cle a l'aide de la commande suivante :
 ```
-parted -s /dev/sdb mklabel gpt mkpart primary ext4 0 100% 
+	parted -s /dev/sdb mklabel gpt mkpart primary ext4 0 100% 
 ``` 
    3. boot sur la cle avec qemu pour installer le systeme
 ```
-qemu-system-x86_64 -hda -menu=boot-menu /dev/sdb -drive /path/to/alpine-linux.iso
+	qemu-system-x86_64 -hda -menu=boot-menu /dev/sdb -drive /path/to/alpine-linux.iso
 ```
 
 
