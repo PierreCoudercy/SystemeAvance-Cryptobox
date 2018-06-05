@@ -11,7 +11,7 @@
 Projet par Coudercy Pierre et Duchet Loïc
 Avec l'aide de Monsieur Gelas Jean-Patrick
 
-Ce document a pour but de decrire le fonctionnement du projet, les choix technique qui ont etait fait et aussi de mettre en avant le evolutions possible du projet, mais aussi de permettre la reproduction du projet presque a l'identique.
+Ce document a pour but de décrire le fonctionnement du projet, les choix technique qui ont était fait et aussi de mettre en avant le évolutions possible du projet, mais aussi de permettre la reproduction du projet presque a l'identique.
 
 # Sommaire
 
@@ -37,18 +37,15 @@ Ce document a pour but de decrire le fonctionnement du projet, les choix techniq
 
 ### Fonctionnement
 
-Pour que le serveur fonctionne il faut deux ordinateurs connecte soit directement par un cable ethernet soit par un switch sur deux ports dans le meme VLAN
-Lorsque la cle a fini de demarre elle affiche un message indiquant l'adresse a taper dans le navigateur internet afin d'acceder au "serveur FTP" et la commande
-a taper dans le terminal afin de pouvoir d'obtenir une adresse IP permettant de communiquer avec l'adresse IP de la cle.
+Pour que le serveur fonctionne il faut deux ordinateurs connecté soit directement par un cable ethernet soit par un switch sur deux ports dans le même VLAN
+Lorsque la clé a fini de demarer elle affiche un message indiquant l'adresse a taper dans le navigateur internet afin d'accèder au "serveur FTP" et la commande a taper dans le terminal afin d'obtenir une adresse IP permettant de communiquer avec l'adresse IP de la clé.
 Taper dans le terminal :
-	`dhclient <interface connectee avec la cle>`
-Puis lorsque votre interface a obtenu une adresse IP, tapez l'adresse indiquee par le terminal de la cle afin d'acceder a la page internet 
-(Attention : si vous avez un proxy configure il vous faudra peut-etre le desactiver pour acceder a la page internet)
-Vous arriver sur une page pour acceder au fichier chiffres il faut tous d'abord taper le mot de passe fourni par le proprietaire de la cle afin de dechiffrer
-les fichiers stocke sur la cle, pour chiffrer a nouveau les fichiers il suffit de clicker sur le lien en dessous du champ ou vous pouvez entrer le mot de passe
-(Si la cle est arrache outre le risque que la cle ne fonctionnenent plus, les fichiers dechiffres seront chiffre lors du prochain demarrage de la cle)
-Apres avoir dechiffre les fichiers vous pouvez cliquer sur le lien DOWNLOAD pour acceder a l'arborescence de fichier des fichiers dechiffres
-et cliquer sur le bouton "Parcourir" pour selectionner le fichier a uploader et sur le bouton "Envoyer" pour les envoyers sur la cle.
+	`dhclient <interface connectée avec la clé>`
+Puis lorsque votre interface a obtenu une adresse IP, tapez l'adresse indiquée par le terminal de la clé afin d'accèder à la page internet 
+(Attention : si vous avez un proxy configuré il vous faudra peut-etre le désactiver pour accèder a la page internet)
+Vous arriver sur une page pour accèder au fichier chiffrés il faut tous d'abord taper le mot de passe fourni par le proprietaire de la clé afin de dechiffrer les fichiers stocké sur la clé, pour chiffrer a nouveau les fichiers il suffit de clicker sur le lien en dessous du champ ou vous pouvez entrer le mot de passe
+(Si la clé est arrachée outre le risque que la clé ne fonctionnenent plus, les fichiers déchiffrés seront chiffrés lors du prochain demarrage de la clé)
+Apres avoir déchiffre les fichiers vous pouvez cliquer sur le lien DOWNLOAD pour acceder a l'arboréscence de fichier des fichiers déchiffrés et cliquer sur le bouton "Parcourir" pour selectionner le fichier a uploader et sur le bouton "Envoyer" pour les envoyers sur la clé.
 
 # Choix techniques
 ### Système d'exploitation
@@ -58,43 +55,47 @@ Pour le système d'exploitation nous avons choisi Alpine Linux par soucis de sim
 ### Serveur Web
 
 Pour le serveur Web nous avons choisi de partir sur une architecture double avec un serveur NGINX et un serveur NodeJS
-Nous avons fait le choix d'une architecture double car nous pensions initialement a n'utiliser que NGINX mais il etait complique d'executer des scripts avec NGINX, nous nous sommes donc vu dans l'obligation de rajouter un serveur NodeJS afin de d'obtenir les fonctionnalite voulue
-Le serveur NGINX sert de proxy et permet aussi d'acceder a l'arborescence de fichiers.
-Le serveur NodeJS quand a lui permet l'upload des fichiers sur la cle et aussi a l'execution des scripts permettant le chiffrement et le dechiffrement.
+
+Nous avons fait le choix d'une architecture double car nous pensions initialement a n'utiliser que NGINX mais il était compliqué d'exécuter des scripts avec NGINX, nous nous sommes donc vu dans l'obligation de rajouter un serveur NodeJS afin de d'obtenir les fonctionnalité voulue.
+
+Le serveur NGINX sert de proxy et permet aussi d'accéder à l'arborescence de fichiers.
+
+Le serveur NodeJS quand à lui permet l'uploader des fichiers sur la clé et gère l'exécution des scripts permettant le chiffrement et le déchiffrement.
 
 
 ### Serveur DHCP et DNS
 
-Pour l'interconnexion entre le serveur et le client plutot que de partir du principe qu'un serveur DHCP serait disponible sur le reseau nous avons choisi que, se serait la cle qui distribuerais des adresses sur le reseau et aussi que la cle servirais de serveur DNS afin de ne pas avoir a taper directement l'adresse IP de la cle. C'est pour cette raison que nous avons choisi dnsmasq qui permet de rendre ces deux services.
+Pour l'interconnexion entre le serveur et le client plutôit que de partir du principe qu'un serveur DHCP serait disponible sur le réseau nous avons choisi que, se serait la clé qui distribuerais des adresses sur le réseau et aussi que la clé servirais de serveur DNS afin de ne pas avoir a taper directement l'adresse IP de la cle. C'est pour cette raison que nous avons choisi dnsmasq qui permet de rendre ces deux services.
 
 ### Chiffrement
 
-Nous avons choisi LUKS pour le chiffrement car nous avions vu le fonctionnement de cet outil lors du cours de Sécurité Réseau de Monsieur Caniou. 
+Nous avons choisi LUKS pour le chiffrement car nous avions vu le fonctionnement de cet outil lors du cours de Sécurité Réseau de Monsieur Caniou.
+
 De plus ce système de chiffrement permet de déchiffrer facilement des données en passant la passphrase en paramètre ce qui permettait de ne pas stocker la passphrase dans un fichier.
 
 # Evolutions possible
 
-- Chiffrement du partition de la cle plutot qu'un gros fichier
+- Chiffrement d'une partition de la clé plutôt qu'un gros fichier
 - Utilisation de NodeJS ou NGINX seul pour le serveur Web
-- Amelioration de l'interface Web
-  - Creation d'une page de connexion et d'une page permettant d'acceder au fichiers et d'uploader des fichiers sur la cle
-  - Dechiffrage "a la vole de la cle" au moment du telechargement ou de l'upload d'un fichier (avec demande de la passphrase a chaque action)
-- Utilisation d'un serveur DHCP present sur le reseau plutot que d'host le serveur sur la cle pour permettre eventuellement de connecter la cle a un reseau WiFi
-- Reduction de l'emprunte memoire de la cle.
+- Amélioration de l'interface Web
+  - Création d'une page de connexion et d'une page permettant d'accèder au fichiers et d'uploader des fichiers sur la clé
+  - Déchiffrage "a la volé de la clé" au moment du téléchargement ou de l'upload d'un fichier (avec demande de la passphrase à chaque action)
+- Utilisation d'un serveur DHCP présent sur le reseau plutot que d'host le serveur sur la clé pour permettre éventuellement de connecter la clé a un reseau WiFi
+- Réduction de l'emprunte mémoire de la clé.
 
 # Comment reproduire le projet
 ### Pré-requis
 
-- Une cle USB avec au moins 8Gb de memoire (16Gb peut etre mieux si vous voulez pouvoir stocker plus de donnees sur la cle)
-- Avoir une machine sous une distribution linux avec qemu d'installe pour creer la cle et avec un port ethernet
-- Avoir une seconde machine sous une distribution linux avec un port ethernet
-- Avoir un cable ethernet pouvant etre branche entre les deux machines
+- Une clé USB avec au moins 8Gb de memoire (16Gb peut-être mieux si vous voulez pouvoir stocker plus de données sur la clé)
+- Avoir une machine sous une distribution linux avec qemu d'installé pour créer la clé et avec un port éthernet
+- Avoir une seconde machine sous une distribution linux avec un port éthernet
+- Avoir un cable éthernet pouvant être branché entre les deux machines
 
 ### Marche à suivre
 
-1. Preparation de la cle
+1. Préparation de la clé
 
-   1. Formater la cle avec les commandes `fdisk` et `mkfs` :
+   1. Formater la clé avec les commandes `fdisk` et `mkfs` :
 
 	```
 	$ fdisk -l
@@ -105,28 +106,28 @@ De plus ce système de chiffrement permet de déchiffrer facilement des données
 	Disklabel type: dos
 	Disk identifier: 0x316f7406
 	```
-	Editer la table de partition de la cle avec la commande `fdisk /dev/sdb`
-- Appuyer sur la touche `d` jusqu'a ce que toutes les  partitions soit supprimee
-- Appuyer sur `p` pour lister les partitions et verifier qu'il n'en reste plus sur la cle
-- Creer une partition avec `n`
-  - Une partion primaire avec `p` (valeur par defaut)
-  - De numero `1` (valeur par defaut)
-  - Premier secteur `2048` (valeur par defaut)
-  - dernier secteur `14,5 GiB` (ou choisir la valeur par defaut si la cle est plus petite)
+	Editer la table de partition de la clé avec la commande `fdisk /dev/sdb`
+- Appuyer sur la touche `d` jusqu'à ce que toutes les  partitions soit supprimée
+- Appuyer sur `p` pour lister les partitions et vérifier qu'il n'en reste plus sur la clé
+- Créer une partition avec `n`
+  - Une partion primaire avec `p` (valeur par défaut)
+  - De numero `1` (valeur par défaut)
+  - Premier secteur `2048` (valeur par défaut)
+  - Dernier secteur `14,5 GiB` (ou choisir la valeur par défaut si la cle est plus petite)
 - Ajouter le flag bootable sur la partition cree `a` puis `1`
-- Verifier que la partition a bien ete cree et occupe bien tous l'espace sur la cle `p`
-- Ecrire sur la cle les changements `w`
+- Vérifier que la partition a bien été crée et occupe bien tous l'espace sur la clé `p`
+- Ecrire sur la clé les changements `w`
 - Taper la commande `mkfs.ext4 /dev/sdb`
 
-   2. Installation d'Alpine Linux sur la cle avec qemu
+   2. Installation d'Alpine Linux sur la clé avec `qemu`
    
-Recuperer l'image iso `standard` de la distribution Alpine sur le [site d'Alpine Linux](https://alpinelinux.org/downloads/)
+Récupèrer l'image iso `standard` de la distribution Alpine sur le [site d'Alpine Linux](https://alpinelinux.org/downloads/)
 
-Booter sur la cle avec  l'image a l'aide de `QEMU` :
+Booter sur la clé avec  l'image à l'aide de `QEMU` :
 
 `qemu-system-x86_64 -hda /dev/sdb -boot menu=on -drive file=alpine-standard-X.X.X-x86_64.iso`
 
-Appuyer sur `F12` pour passer au menu de boot et appuyer sur `2` pour que le systeme boot sur l'image disque d'Alpine Linux
+Appuyer sur `F12` pour passer au menu de boot et appuyer sur `2` pour que le système boot sur l'image disque d'Alpine Linux
 
 On se connecte en tant que `root`
 
@@ -135,7 +136,7 @@ On se connecte en tant que `root`
 S'il y a un proxy :
 `export HTTP_PROXY=<URL DU PROXY>`
 
-Appel du script pre-existant de configuration d'Alpine:
+Appel du script pré-existant de configuration d'Alpine:
 
 ```
 $ setup-alpine
@@ -157,11 +158,11 @@ overwrite: yes
 $ reboot
 ```
 
-Apres cela il faut mettre a jour les index des paquets pour pouvoir en installer d'autres:
+Après cela il faut mettre à jour les index des paquets pour pouvoir en installer d'autres:
 
 `$ apk update`
 
-   4. Installation des logiciels necessaire
+   4. Installation des logiciels nécessaire
    
 Installation de NGINX
 
@@ -185,7 +186,7 @@ Installation e2fsprog
 
    5. Configuration final 
    
-Creation d'un gros fichier chiffre servant a contenir les fichiers protege
+Création d'un gros fichier chiffré servant a contenir les fichiers protegé
 
 ```
 $ fallocate -l 4G crypt.img
@@ -197,14 +198,14 @@ $ losetup -d /dev/loop0
 ```
 Configuration des services
 
-Pour configurer les services il suffit de copier les fichiers du depot a la racines de la cle pour se faire il suffit de monter ur une des machines a notre disposition la partition /dev/sdb3 
+Pour configurer les services il suffit de copier les fichiers du dépôt a la racines de la cle pour se faire il suffit de monter sur une des machines à notre disposition la partition /dev/sdb3 
 
 ```
 $ mkdir temp
 $ mount /dev/sdb3 temp
 ```
 
-et de copier les fichieirs du depot dans le filesystem monte.
+et de copier les fichiers du dépôt dans le filesystem monté.
 
 `sudo cp depot/* temp/`
 
