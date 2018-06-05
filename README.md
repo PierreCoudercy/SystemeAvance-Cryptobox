@@ -179,6 +179,24 @@ Installation de LUKS
 
 `apk add cryptsetup`
 
+Installation e2fsprog
+
+`apk add e2fsprog`
+
    5. Configuration final 
+   
+Creation d'un gros fichier chiffre servant a contenir les fichiers protege
+
+```
+$ fallocate -l 4G crypt.img
+$ losetup /dev/loop0 /root/crypt.img
+$ cryptsetup -y luksFormat -c blowfish -s 256 /dev/loop0
+$ cryptsetup luksOpen /dev/loop0 cryptobox
+$ mkfs.msdos -j /dev/mapper/cryptobox (FAT32)
+```
+
+
+
+
    
 
