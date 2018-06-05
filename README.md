@@ -96,17 +96,19 @@ De plus ce système de chiffrement permet de déchiffrer facilement des données
 
    2. Formater la cle a l'aide de la commande suivante :
 
-	```$ fdisk -l
+	```
+	$ fdisk -l
 	Disque /dev/sdb : 14,5 GiB, 15524167680 octets, 30320640 secteurs
 	Unités : sectors of 1 * 512 = 512 octets
 	Sector size (logical/physical): 512 bytes / 512 bytes
 	I/O size (minimum/optimal): 512 bytes / 512 bytes
 	Disklabel type: dos
-	Disk identifier: 0x316f7406``` 
+	Disk identifier: 0x316f7406
+	``` 
  
    3. boot sur la cle avec qemu pour installer le systeme
 
-	`qemu-system-x86_64 -hda -menu=boot-menu /dev/sdb -drive /path/to/alpine-linux.iso`
+	```qemu-system-x86_64 -hda -menu=boot-menu /dev/sdb -drive /path/to/alpine-linux.iso```
 
 
 
