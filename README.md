@@ -196,6 +196,7 @@ $ mkfs.msdos -j /dev/mapper/cryptobox (FAT32)
 $ losetup -d /dev/loop0
 ```
 Configuration des services
+
 Pour configurer les services il suffit de copier les fichiers du depot a la racines de la cle pour se faire il suffit de monter ur une des machines a notre disposition la partition /dev/sdb3 
 
 ```
