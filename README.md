@@ -189,10 +189,11 @@ Creation d'un gros fichier chiffre servant a contenir les fichiers protege
 
 ```
 $ fallocate -l 4G crypt.img
-$ losetup /dev/loop0 /root/crypt.img
+$ losetup /dev/loop0 /root/crypto.img
 $ cryptsetup -y luksFormat -c blowfish -s 256 /dev/loop0
 $ cryptsetup luksOpen /dev/loop0 cryptobox
 $ mkfs.msdos -j /dev/mapper/cryptobox (FAT32)
+$ losetup -d /dev/loop0
 ```
 Configuration des services
 Pour configurer les services il suffit de copier les fichiers du depot a la racines de la cle pour se faire il suffit de monter ur une des machines a notre disposition la partition /dev/sdb3 
