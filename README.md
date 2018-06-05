@@ -153,12 +153,32 @@ ssh server: none
 disk: sda
 mode: sys
 overwrite: yes
+
+$ reboot
 ```
 
 Apres cela il faut mettre a jour les index des paquets pour pouvoir en installer d'autres:
 
 `$ apk update`
 
-Rebootez pour verifier que l'installation c'est fait correctement:
+   3. Installation des logiciels necessaire
+   
+Installation de NGINX
 
-`$ reboot`
+`apk add nginx`
+
+Installation de NodeJS
+
+`apk add nodejs`
+
+Installation de dnsmaq
+
+`apk add dnsmasq`
+
+Installation de LUKS
+
+`apk add cryptsetup`
+
+   4. Configuration final 
+   
+
