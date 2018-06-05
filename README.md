@@ -161,7 +161,7 @@ Apres cela il faut mettre a jour les index des paquets pour pouvoir en installer
 
 `$ apk update`
 
-   3. Installation des logiciels necessaire
+   4. Installation des logiciels necessaire
    
 Installation de NGINX
 
@@ -179,6 +179,6 @@ Installation de LUKS
 
 `apk add cryptsetup`
 
-   4. Configuration final 
+   5. Configuration final 
    
 
