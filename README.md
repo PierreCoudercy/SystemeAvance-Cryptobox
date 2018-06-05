@@ -86,15 +86,15 @@ De plus ce système de chiffrement permet de déchiffrer facilement des données
 ### Pré-requis
 
 - Une cle USB avec au moins 8Gb de memoire (16Gb peut etre mieux si vous voulez pouvoir stocker plus de donnees sur la cle)
+- Avoir une machine sous une distribution linux avec qemu d'installe pour creer la cle et avec un port ethernet
+- Avoir une seconde machine sous une distribution linux avec un port ethernet
+- Avoir un cable ethernet pouvant etre branche entre les deux machines
 
 ### Marche à suivre
 
 1. Preparation de la cle
-   1. Telecharger l'image iso d'alpine linux au lien suivant (choisir la version : standard-x86_64)
-   
-   	https://alpinelinux.org/downloads/
 
-   2. Formater la cle avec la commande `fdisk` :
+   1. Formater la cle avec les commandes `fdisk` et `mkfs` :
 
 	```
 	$ fdisk -l
@@ -114,8 +114,51 @@ De plus ce système de chiffrement permet de déchiffrer facilement des données
   - Premier secteur `2048` (valeur par defaut)
   - dernier secteur `14,5 GiB` (ou choisir la valeur par defaut si la cle est plus petite)
 - Ajouter le flag bootable sur la partition cree `a` puis `1`
-	
-	
+- Verifier que la partition a bien ete cree et occupe bien tous l'espace sur la cle `p`
+- Ecrire sur la cle les changements `w`
+- Taper la commande `mkfs.ext4 /dev/sdb`
 
+   2. Installation d'Alpine Linux sur la cle avec qemu
+   
+Recuperer l'image iso `standard` de la distribution Alpine sur le [site d'Alpine Linux](https://alpinelinux.org/downloads/)
 
+Booter sur la cle avec  l'image a l'aide de `QEMU` :
 
+`qemu-system-x86_64 -hda /dev/sdb -boot menu=on -drive file=alpine-standard-X.X.X-x86_64.iso`
+
+Appuyer sur `F12` pour passer au menu de boot et appuyer sur `2` pour que le systeme boot sur l'image disque d'Alpine Linux
+
+On se connecte en tant que `root`
+
+   3. Configuration d'Alpine
+
+S'il y a un proxy :
+`export HTTP_PROXY=<URL DU PROXY>`
+
+Appel du script pre-existant de configuration d'Alpine:
+
+```
+$ setup-alpine
+keybord-layout: fr
+variant: fr-azerty
+hostname: cryptobox
+initialise interface: eth0
+ip address: dhcp
+manual config: no
+password: **** (mot de passe de votre choix)
+timezone: Europe/Paris
+proxy: none // Meme quand le proxy est configure il faut l'exporter si on souhaite avoir acces a internet
+mirror: 1 (dl-cdn.alpinelinux.org)
+ssh server: none
+disk: sda
+mode: sys
+overwrite: yes
+```
+
+Apres cela il faut mettre a jour les index des paquets pour pouvoir en installer d'autres:
+
+`$ apk update`
+
+Rebootez pour verifier que l'installation c'est fait correctement:
+
+`$ reboot`
