@@ -94,7 +94,7 @@ De plus ce système de chiffrement permet de déchiffrer facilement des données
    
    	https://alpinelinux.org/downloads/
 
-   2. Formater la cle a l'aide de la commande suivante :
+   2. Formater la cle avec la commande `fdisk` :
 
 	```
 	$ fdisk -l
@@ -104,11 +104,18 @@ De plus ce système de chiffrement permet de déchiffrer facilement des données
 	I/O size (minimum/optimal): 512 bytes / 512 bytes
 	Disklabel type: dos
 	Disk identifier: 0x316f7406
-	``` 
- 
-   3. boot sur la cle avec qemu pour installer le systeme
-
-	```qemu-system-x86_64 -hda -menu=boot-menu /dev/sdb -drive /path/to/alpine-linux.iso```
+	```
+	Editer la table de partition de la cle avec la commande `fdisk /dev/sdb`
+	- Appuyer sur la touche `d` jusqu'a ce que toutes les  partitions soit supprimee
+	- Appuyer sur `p` pour lister les partitions et verifier qu'il n'en reste plus sur la cle
+	- Creer une partition avec `n`
+	  - Une partion primaire avec `p` (valeur par defaut)
+	  - De numero `1` (valeur par defaut)
+	  - Premier secteur `2048` (valeur par defaut)
+	  - dernier secteur `14,5 GiB` (ou choisir la valeur par defaut si la cle est plus petite)
+	- Ajouter le flag bootable sur la partition cree `a` puis `1`
+	
+	
 
 
 
